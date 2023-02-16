@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>poc-quay-client</artifactId>
+  <groupId>com.github.andreaTP</groupId>
+  <name>Quay Client SDK</name>
+  <version>999-SNAPSHOT</version>
+
+  <properties>
+    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <kiota.utils.version>0.1.7</kiota.utils.version>
+    <kiota.library.version>0.2.1</kiota.library.version>
+    <findbugs.version>3.0.0</findbugs.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.microsoft.kiota</groupId>
+      <artifactId>microsoft-kiota-abstractions</artifactId>
+      <version>${kiota.library.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.microsoft.kiota</groupId>
+      <artifactId>microsoft-kiota-serialization-json</artifactId>
+      <version>${kiota.library.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.microsoft.kiota</groupId>
+      <artifactId>microsoft-kiota-serialization-text</artifactId>
+      <version>${kiota.library.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.microsoft.kiota</groupId>
+      <artifactId>microsoft-kiota-serialization-form</artifactId>
+      <version>${kiota.library.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>${findbugs.version}</version>
+    </dependency>
+  </dependencies>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>kiota-maven-plugin</artifactId>
+        <groupId>com.github.andreaTP.kiota-utils</groupId>
+        <version>${kiota.utils.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <file>swagger.json</file>
+          <namespace>io.quay.api</namespace>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
